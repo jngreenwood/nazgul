@@ -29,7 +29,12 @@ func (f *NodeWalkCommand) Run(args []string) int {
 	agent := internal.NewAgent()
 	agent.Start()
 
-	node, err := agent.GetNode("gateway")
+	if len(args) < 1 {
+		f.Ui.Error("You must specify a node name")
+		return 1
+	}
+
+	node, err := agent.GetNode(args[0])
 	if err != nil {
 		f.Ui.Error(err.Error())
 		return 1
