@@ -25,6 +25,11 @@ func Commands(ui cli.Ui) map[string]cli.CommandFactory {
 				Ui: ui,
 			}, nil
 		},
+		"run": func() (cli.Command, error) {
+			return &RunCommand{
+				Ui: ui,
+			}, nil
+		},
 	}
 	return all
 }
